@@ -1,25 +1,42 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
+import Home from './pages/Home';
+import Profile from './pages/Profile';
+import NotFound from './pages/NotFound';
+import Menu from './components/Menu';
+import UserContext from './UserContext';
+class App extends React.Component {
+  state = {
+    username: ''
+   };
+   setUsername = (username) => {
+     this.setState({username})
+   }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  render (){
+    const contextValue = { username: this.state.username, setUsername: this.setUsername }
+      return (
+        <UserContext.Provider value={contextValue}>
+          <div className="App">
+            <BrowserRouter>
+              <header className="App-header">
+                <Menu />
+              </header>
+              <main>
+                <Switch>
+                  <Route exact path={"/"} component={Home} />
+                  <Route exact path={'/profile'} component={Profile} />
+                  <Route exact path={"*"} component={NotFound} />
+
+                </Switch>
+              </main>
+            </BrowserRouter>
+          </div>
+        </UserContext.Provider>
+    );
+  }
+ 
 }
 
 export default App;
