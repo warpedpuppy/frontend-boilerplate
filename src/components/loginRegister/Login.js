@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import { Form, Button} from 'react-bootstrap';
-import './Register.css';
 import Config from '../../config';
 import TokenService from '../../services/TokenService';
 import UserContext from '../../UserContext';
-export default class Register extends Component {
-
+export default class Login extends Component {
+    state = {
+        error: false,
+        feedback: ''
+    }
     submitHandler = async (e) => {
         e.preventDefault();
+        this.setState({error: false, feedback: "processing. . . "})
         let obj = {
             username: e.target.username.value,
             password: e.target.password.value
@@ -25,20 +28,23 @@ export default class Register extends Component {
             })
             
             let resultJson = result.ok ? await result.json() : {success: false};
+
             if (resultJson.success) {
+                this.setState({feedback: ""})
                 TokenService.setToken(resultJson.data.token);
                 this.context.setUsername(resultJson.data.username)
                 e.target.username.value = "";
-                e.target.email.value = "";
                 e.target.password.value = "";
+                
 
             } else {
-                //console.error(resultJson.message);
+               this.setState({feedback: resultJson.message});
                 e.target.password.value = "";
             }
     
-        } catch (e) {
-            //console.error(e)
+        } catch (error) {
+           e.target.password.value = "";
+           this.setState({error: true, feedback: "error"})
         }
     }
     render() {
@@ -47,24 +53,19 @@ export default class Register extends Component {
                 <Form className='login-form' onSubmit={this.submitHandler}>
                 <h3>login</h3>
                 <Form.Group controlId="formBasicUsernameLogin">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control type="text" placeholder="username" name="username" />
-                    <Form.Text className="text-muted">
-                    hola
-                    </Form.Text>
+                    <Form.Control type="text" placeholder="username" name="username" required />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPasswordLogin">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" name="password" />
+                    <Form.Control type="password" placeholder="Password" name="password" required />
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
 
+                <Button variant="primary" type="submit">Submit</Button>
+
+                <div className={ this.state.error ? `feedback error` : `feedback` }>{this.state.feedback}</div>
                 </Form>
             </div>
         )
     }
 }
-Register.contextType = UserContext;
+Login.contextType = UserContext;

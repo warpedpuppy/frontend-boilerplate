@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Form, Button} from 'react-bootstrap';
-import './Register.css';
 import Config from '../../config';
 import TokenService from '../../services/TokenService';
 import UserContext from '../../UserContext';

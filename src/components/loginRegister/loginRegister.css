@@ -1,0 +1,22 @@
+.nav.nav-tabs,
+.nav.nav-tabs~.tab-content {
+    width: 700px;
+    margin: 10px auto;
+}
+
+.register-form,
+.login-form {
+    border: 3px solid lightgray;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.feedback {
+    text-align: right;
+    color: green;
+    font-style: italic;
+}
+
+.feedback.error {
+    color: red;
+}
