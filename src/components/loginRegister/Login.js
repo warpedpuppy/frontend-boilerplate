@@ -38,7 +38,7 @@ export default class Login extends Component {
                 
 
             } else {
-               this.setState({feedback: resultJson.message});
+               this.setState({error: true, feedback: resultJson.message});
                 e.target.password.value = "";
             }
     

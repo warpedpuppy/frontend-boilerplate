@@ -7,7 +7,7 @@ export default class loginRegister extends Component {
     render() {
         return (
             <div>
-                 <Tabs defaultActiveKey="login" id="uncontrolled-tab-example">
+                 <Tabs defaultActiveKey="register" id="uncontrolled-tab-example">
                     <Tab eventKey="login" title="log in">
                         <Login />
                     </Tab>
