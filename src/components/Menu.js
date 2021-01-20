@@ -24,6 +24,7 @@ class Menu extends Component {
             <Nav.Link as={Link} to={'/profile'}>profile</Nav.Link> 
             <Nav.Link as={Link} to={'/memoirs'}>memoirs</Nav.Link> 
             <Nav.Link as={Link} to={'/resources'}>recources</Nav.Link>
+            <Nav.Link as={Link} to={'/users'}>users</Nav.Link>
             </>
              )
             : '' 
