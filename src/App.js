@@ -8,6 +8,7 @@ import Menu from './components/Menu';
 import UserContext from './UserContext';
 import Memoirs from './pages/Memoirs';
 import Resources from './pages/Resources';
+import Users from './pages/Users';
 import jwt from 'jwt-decode';
 class App extends React.Component {
   state = {
@@ -40,6 +41,7 @@ class App extends React.Component {
                   <Route exact path={'/profile'} component={Profile} />
                   <Route exact path={'/memoirs'} component={Memoirs} />
                   <Route exact path={'/resources'} component={Resources} />
+                  <Route exact path={'/users'} component={Users} />
                   <Route exact path={"*"} component={NotFound} />
 
                 </Switch>
