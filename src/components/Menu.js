@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Navbar, Nav, Form, Button} from 'react-bootstrap';
+import {Navbar, Nav, NavDropdown, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import UserContext from '../UserContext';
 import TokenService from '../services/TokenService';
@@ -15,24 +15,28 @@ class Menu extends Component {
     render() {
 
         return (
-        <Navbar bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Navbar.Brand as={Link} to={'/'}>QR</Navbar.Brand>
-            <Nav className="mr-auto">
-            { this.context.username ? 
-            (
-            <>
-            <Nav.Link as={Link} to={'/profile'}>profile</Nav.Link> 
-            <Nav.Link as={Link} to={'/memoirs'}>memoirs</Nav.Link> 
-            <Nav.Link as={Link} to={'/resources'}>recources</Nav.Link>
-            <Nav.Link as={Link} to={'/users'}>users</Nav.Link>
-            </>
-             )
-            : '' 
-            }
-            </Nav>
-            <Form inline>
-            { this.context.username ? <Button onClick={this.logOutHandler} variant="outline-info">log out</Button> : '' }
-            </Form>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse className="justify-content-end">
+              
+                    { this.context.username ? 
+                    (
+                    <>
+                        <Nav.Link as={Link} to={'/memoirs'}>memoirs</Nav.Link> 
+                        <Nav.Link as={Link} to={'/resources'}>recources</Nav.Link>
+                        <Nav.Link as={Link} to={'/users'}>users</Nav.Link>
+                        <NavDropdown title="admin" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="/profile">{this.context.username}'s profile</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <Button onClick={this.logOutHandler} variant="outline-info">log out</Button>
+                        </NavDropdown>
+                    </>
+                    )
+                    : '' 
+                    }
+                
+            </Navbar.Collapse>
         </Navbar>
         )
     }
