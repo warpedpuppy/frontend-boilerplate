@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import Config from '../config';
 import Resource from '../components/resources/Resource';
-import { Dropdown } from 'react-bootstrap';
+import { Dropdown, Form } from 'react-bootstrap';
+import './Resources.css';
+
 export default class Resources extends Component {
     state = {
         resources: [],
-        categories: []
+        categories: [],
+        filtered: []
     }
     componentDidMount = async () => {
         let token = localStorage.getItem('token');
@@ -16,13 +19,24 @@ export default class Resources extends Component {
 
         })
         let resultJson = result.ok ? await result.json() : {};
-        this.setState({resources: resultJson.resources, categories: resultJson.categories})
+        let categories = resultJson.categories;
+        categories.unshift("all")
+        this.setState({resources: resultJson.resources, filtered: resultJson.resources, categories})
 
+    }
+    chooseCategory = (e) => {
+        e.preventDefault();
+        let filtered = e.target.name === 'all' ? this.state.resources : this.state.resources.filter ( resource => e.target.name === resource.category)
+        this.setState({filtered})
+    }
+    onChangeHandler = (e) => {
+        let filtered = this.state.resources.filter ( resource => resource.name.includes(e.target.value) || resource.description.includes(e.target.value))
+        this.setState({filtered})
     }
     render() {
         
         return (
-            <div>
+            <div className="recources-page">
                 <h1>Resources</h1>
                 <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -30,12 +44,17 @@ export default class Resources extends Component {
                 </Dropdown.Toggle>
                     <Dropdown.Menu>
                     {
-                        this.state.categories.map( (category, index) => <Dropdown.Item key={index}>{category}</Dropdown.Item>)
+                        this.state.categories.map( (category, index) => <Dropdown.Item onClick={this.chooseCategory} name={category} key={index}>{category}</Dropdown.Item>)
                     }
                     </Dropdown.Menu>
                 </Dropdown>
+                <Form className="resources-input-form">
+                    <Form.Group controlId="formBasicEmail">
+                    <Form.Control type="text" placeholder="search" onChange={this.onChangeHandler} />
+                    </Form.Group>
+                </Form>
                 {
-                    this.state.resources.map( (resource, index) => <Resource key={index} {...resource} emoji={Config.EMOJIS[Math.floor(Math.random()*Config.EMOJIS.length)]} /> )
+                    this.state.filtered.map( (resource, index) => <Resource key={index} {...resource} /> )
                 }
             </div>
         )
