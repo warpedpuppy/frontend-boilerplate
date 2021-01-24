@@ -26,7 +26,7 @@ class Menu extends Component {
                         <Nav.Link as={Link} to={'/memoirs'}>memoirs</Nav.Link> 
                         <Nav.Link as={Link} to={'/resources'}>recources</Nav.Link>
                         <Nav.Link as={Link} to={'/users'}>users</Nav.Link>
-                        <NavDropdown title="admin" id="basic-nav-dropdown">
+                        <NavDropdown title="&#9881;" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/profile">{this.context.username}'s profile</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <Button onClick={this.logOutHandler} variant="outline-info">log out</Button>

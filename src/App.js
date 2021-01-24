@@ -6,7 +6,8 @@ import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 import Menu from './components/Menu';
 import UserContext from './UserContext';
-import Memoirs from './pages/Memoirs';
+import Memoirs from './pages/memoirs/Memoirs';
+import Memoir from './pages/memoirs/Memoir';
 import Resources from './pages/Resources';
 import Users from './pages/Users';
 import jwt from 'jwt-decode';
@@ -40,6 +41,7 @@ class App extends React.Component {
                   <Route exact path={"/"} component={Home} />
                   <Route exact path={'/profile'} component={Profile} />
                   <Route exact path={'/memoirs'} component={Memoirs} />
+                  <Route exact path={'/memoir/:id'} component={Memoir} />
                   <Route exact path={'/resources'} component={Resources} />
                   <Route exact path={'/users'} component={Users} />
                   <Route exact path={"*"} component={NotFound} />
