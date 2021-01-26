@@ -1,6 +1,8 @@
 import React from 'react';
 import './Memoir.css';
 import Config from '../../config';
+import { Link } from 'react-router-dom';
+
 export default class Memoir extends React.Component {
 
     state = {
@@ -22,12 +24,13 @@ export default class Memoir extends React.Component {
     }
     render(){
         let { memoir } = this.state;
+    
         return (
             <div className="memoir">
                 <div className="memoir-header">
                     <h3>{memoir.title}</h3>
                     <p>{memoir.subtitle}</p>
-                    <p>author: { memoir.user ? memoir.user.username : ''}</p>
+                    <p><Link to={ memoir.user ? `/users/${ memoir.user._id}` : `` }>author: { memoir.user ? memoir.user.username : ''}</Link></p>
                 </div>
                 <pre>{memoir.text}</pre>
                 <div className="memoir-footer">
