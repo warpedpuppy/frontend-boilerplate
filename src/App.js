@@ -9,7 +9,8 @@ import UserContext from './UserContext';
 import Memoirs from './pages/memoirs/Memoirs';
 import Memoir from './pages/memoirs/Memoir';
 import Resources from './pages/Resources';
-import Users from './pages/Users';
+import Users from './pages/users/Users';
+import User from './pages/users/User';
 import jwt from 'jwt-decode';
 class App extends React.Component {
   state = {
@@ -44,6 +45,7 @@ class App extends React.Component {
                   <Route exact path={'/memoir/:id'} component={Memoir} />
                   <Route exact path={'/resources'} component={Resources} />
                   <Route exact path={'/users'} component={Users} />
+                  <Route exact path={'/users/:id'} component={User} />
                   <Route exact path={"*"} component={NotFound} />
 
                 </Switch>

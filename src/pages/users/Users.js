@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import Config from '../config';
-import User from '../components/users/User';
+import Config from '../../config';
+import UserModule from './components/UserModule';
+import './Users.css';
 export default class Memoirs extends Component {
     state = {
         users: []
@@ -17,14 +18,18 @@ export default class Memoirs extends Component {
         this.setState({users: resultJson.users})
 
     }
+
+
     render() {
         
         return (
-            <div>
+            <div className="general-page-layout">
                 <h1>Users</h1>
+                <div className="users-grid">
                 {
-                    this.state.users.map( (user, index) => <User key={index} {...user} /> )
+                    this.state.users.map( (user, index) => <UserModule key={index} {...user} /> )
                 }
+                </div>
             </div>
         )
     }
