@@ -35,6 +35,7 @@ export default class Profile extends Component {
     }
 
     render() {
+        let {subscriptions} = this.context;
         return (
             <div className="general-page-layout">
                 <h1>{this.context.username}</h1>
