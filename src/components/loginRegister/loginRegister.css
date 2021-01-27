@@ -1,3 +1,7 @@
+.login-register-container {
+    margin-top: 75px;
+}
+
 .nav.nav-tabs,
 .nav.nav-tabs~.tab-content {
     width: 700px;

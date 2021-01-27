@@ -32,10 +32,11 @@ export default class Register extends Component {
 
             if (resultJson.success) {
                 TokenService.setToken(resultJson.data.token);
-                this.context.setUsername(resultJson.data.username)
+                this.context.setUserdata(resultJson.data)
                 e.target.username.value = "";
                 e.target.email.value = "";
                 e.target.password.value = "";
+                this.props.toggleLogin();
 
             } else {
                 this.setState({error: true, feedback: resultJson.message});

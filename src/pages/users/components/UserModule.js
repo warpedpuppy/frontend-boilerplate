@@ -6,9 +6,14 @@ export default function UserModule(props) {
     function goToUserPage () {
         history.push(`/users/${props.id}`)
     }
+ 
     return (
         <div className="user-module" onClick={goToUserPage}>
-            {props.username}
+            <p>{props.username}</p>
+            <div>
+                <label>subscribed:</label><input type="checkbox" disabled checked={props.subscribed}  />
+            </div>
+            <img src="https://walthermidcoast.s3.amazonaws.com/qr/IMG_5198.png" className="user-image" alt={`${props.username}`} />
         </div>
     )
 }

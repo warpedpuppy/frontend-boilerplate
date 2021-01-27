@@ -36,7 +36,7 @@ export default class Resources extends Component {
     render() {
         
         return (
-            <div className="recources-page">
+            <div className="general-page-layout recources-page">
                 <h1>Resources</h1>
                 <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">

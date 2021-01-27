@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Config from '../../config';
 import MemoirModule from './components/MemoirModule';
 import './Memoirs.css';
-import { Dropdown, Form } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 export default class Memoirs extends Component {
     state = {
         memoirs: [],

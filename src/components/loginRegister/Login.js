@@ -32,10 +32,10 @@ export default class Login extends Component {
             if (resultJson.success) {
                 this.setState({feedback: ""})
                 TokenService.setToken(resultJson.data.token);
-                this.context.setUsername(resultJson.data.username)
+                this.context.setUserdata(resultJson.data)
                 e.target.username.value = "";
                 e.target.password.value = "";
-                
+                this.props.toggleLogin();
 
             } else {
                this.setState({error: true, feedback: resultJson.message});

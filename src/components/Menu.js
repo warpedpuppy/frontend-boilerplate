@@ -4,18 +4,29 @@ import {Link} from 'react-router-dom';
 import UserContext from '../UserContext';
 import TokenService from '../services/TokenService';
 import { withRouter } from 'react-router-dom';
+import './Menu.css';
+import LoginRegister from '../components/loginRegister/loginRegister';
 class Menu extends Component {
+
+    state = {
+        showLogin: false
+    }
 
     logOutHandler = (e) => {
         e.preventDefault();
         TokenService.deleteToken();
-        this.context.setUsername('');
+        this.context.setUserdata({username: "", id: ""});
         this.props.history.push('/')
+    }
+    toggleLogin = (e) => {
+        this.props.changeLoginShowing();
+        this.setState({showLogin: !this.state.showLogin})
     }
     render() {
 
         return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top" >
             <Navbar.Brand as={Link} to={'/'}>QR</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse className="justify-content-end">
@@ -33,11 +44,15 @@ class Menu extends Component {
                         </NavDropdown>
                     </>
                     )
-                    : '' 
+                    :  <Nav.Link as={Link} to={'/'} onClick={this.toggleLogin}>log in</Nav.Link>  
                     }
                 
             </Navbar.Collapse>
         </Navbar>
+        {
+           this.state.showLogin ? <LoginRegister toggleLogin={this.toggleLogin} /> : ''
+        }
+        </>
         )
     }
 }

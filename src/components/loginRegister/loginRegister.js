@@ -6,13 +6,13 @@ import './loginRegister.css'
 export default class loginRegister extends Component {
     render() {
         return (
-            <div>
-                 <Tabs defaultActiveKey="register" id="uncontrolled-tab-example">
+            <div className="login-register-container">
+                 <Tabs defaultActiveKey="login" id="uncontrolled-tab-example">
                     <Tab eventKey="login" title="log in">
-                        <Login />
+                        <Login toggleLogin={this.props.toggleLogin} />
                     </Tab>
                     <Tab eventKey="register" title="register">
-                        <Register />
+                        <Register toggleLogin={this.props.toggleLogin} />
                     </Tab>
                 </Tabs>
             </div>

@@ -3,13 +3,10 @@
 }
 
 .resources-input-form {
-    width: 90%;
     display: block;
     margin: 10px auto;
 }
 
 @media (min-width: 750px) {
-    .resources-input-form {
-        width: 50%;
-    }
+    /* .resources-input-form {} */
 }
